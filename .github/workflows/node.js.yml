@@ -39,7 +39,7 @@ jobs:
         gist_description: A Gist that is updated multiple times in a GH action
         github_file: report.json
 
-sync_file_3:
+  sync_file_3:
     runs-on: ubuntu-latest
 
     steps:
