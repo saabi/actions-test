@@ -1,26 +1,53 @@
-name: Node.js CI
+name: Test updating independent Gist files
 
 on:
-  push:
-    branches: [ $default-branch ]
   pull_request:
-    branches: [ $default-branch ]
+    branches: main
 
 jobs:
-  test:
-
+  sync_file_1:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [15.x]
+    steps:
+    - name: 'Checkout the repository'
+      uses: actions/checkout@v2
+
+    - name: 'Save README.md in Gist'
+      uses: exuanbo/actions-deploy-gist@v1
+      with:
+        token: ${{ secrets.GIST_TOKEN }}
+        gist_id: ca24af64f2473c67b5da4e772987c569
+        gist_file_name: README.md
+        file_path: README.md
+
+  sync_file_2:
+    needs: sync_file_1
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: 'Checkout the repository'
+      uses: actions/checkout@v2
+
+    - name: 'Save report.json in Gist'
+      uses: exuanbo/actions-deploy-gist@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+        token: ${{ secrets.GIST_TOKEN }}
+        gist_id: ca24af64f2473c67b5da4e772987c569
+        gist_file_name: report.json
+        file_path: report.json
+
+  sync_file_3:
+    needs: sync_file_2
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 'Checkout the repository'
+      uses: actions/checkout@v2
+
+    - name: 'Save report2.json in Gist'
+      uses: exuanbo/actions-deploy-gist@v1
+      with:
+        token: ${{ secrets.GIST_TOKEN }}
+        gist_id: ca24af64f2473c67b5da4e772987c569
+        gist_file_name: report2.json
+        file_path: report2.json
