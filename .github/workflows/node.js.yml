@@ -19,7 +19,7 @@ jobs:
         auth: ${{ secrets.GIST_TOKEN }}
         gist_url: https://gist.github.com/saabi/ca24af64f2473c67b5da4e772987c569
         gist_title: Example Gist Title
-        gist_description: A Gist that is updataed multiple times in a GH action
+        gist_description: A Gist that is updated multiple times in a GH action
         github_file: README.md
 
   sync_file_2:
@@ -36,5 +36,22 @@ jobs:
         auth: ${{ secrets.GIST_TOKEN }}
         gist_url: https://gist.github.com/saabi/ca24af64f2473c67b5da4e772987c569
         gist_title: Example Gist Title
-        gist_description: A Gist that is updataed multiple times in a GH action
+        gist_description: A Gist that is updated multiple times in a GH action
         github_file: report.json
+
+sync_file_3:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 'Checkout the repository'
+      uses: actions/checkout@v2
+
+    - name: 'Save report.json in Gist'
+      uses: popsiclestick/gist-sync-action@v1.2.0
+      id: sync
+      with:
+        auth: ${{ secrets.GIST_TOKEN }}
+        gist_url: https://gist.github.com/saabi/ca24af64f2473c67b5da4e772987c569
+        gist_title: Example Gist Title
+        gist_description: A Gist that is updated multiple times in a GH action
+        github_file: report2.json
