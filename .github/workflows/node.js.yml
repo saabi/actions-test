@@ -23,6 +23,7 @@ jobs:
         github_file: README.md
 
   sync_file_2:
+    needs: sync_file_1
     runs-on: ubuntu-latest
 
     steps:
@@ -40,6 +41,7 @@ jobs:
         github_file: report.json
 
   sync_file_3:
+    needs: sync_file_2
     runs-on: ubuntu-latest
 
     steps:
