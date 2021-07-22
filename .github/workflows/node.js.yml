@@ -13,14 +13,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: 'Save README.md in Gist'
-      uses: popsiclestick/gist-sync-action@v1.2.0
-      id: sync
+      uses: exuanbo/actions-deploy-gist@v1
       with:
-        auth: ${{ secrets.GIST_TOKEN }}
-        gist_url: https://gist.github.com/saabi/ca24af64f2473c67b5da4e772987c569
-        gist_title: Example Gist Title
-        gist_description: A Gist that is updated multiple times in a GH action
-        github_file: README.md
+        token: ${{ secrets.GIST_TOKEN }}
+        gist_id: ca24af64f2473c67b5da4e772987c569
+        gist_file_name: README.md
+        file_path: README.md
 
   sync_file_2:
     needs: sync_file_1
@@ -31,14 +29,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: 'Save report.json in Gist'
-      uses: popsiclestick/gist-sync-action@v1.2.0
-      id: sync
+      uses: exuanbo/actions-deploy-gist@v1
       with:
-        auth: ${{ secrets.GIST_TOKEN }}
-        gist_url: https://gist.github.com/saabi/ca24af64f2473c67b5da4e772987c569
-        gist_title: Example Gist Title
-        gist_description: A Gist that is updated multiple times in a GH action
-        github_file: report.json
+        token: ${{ secrets.GIST_TOKEN }}
+        gist_id: ca24af64f2473c67b5da4e772987c569
+        gist_file_name: report.json
+        file_path: report.json
 
   sync_file_3:
     needs: sync_file_2
@@ -48,12 +44,10 @@ jobs:
     - name: 'Checkout the repository'
       uses: actions/checkout@v2
 
-    - name: 'Save report.json in Gist'
-      uses: popsiclestick/gist-sync-action@v1.2.0
-      id: sync
+    - name: 'Save report2.json in Gist'
+      uses: exuanbo/actions-deploy-gist@v1
       with:
-        auth: ${{ secrets.GIST_TOKEN }}
-        gist_url: https://gist.github.com/saabi/ca24af64f2473c67b5da4e772987c569
-        gist_title: Example Gist Title
-        gist_description: A Gist that is updated multiple times in a GH action
-        github_file: report2.json
+        token: ${{ secrets.GIST_TOKEN }}
+        gist_id: ca24af64f2473c67b5da4e772987c569
+        gist_file_name: report2.json
+        file_path: report2.json
